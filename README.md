@@ -11,7 +11,7 @@
 | nickname          | string   | null: false |
 | email             | string   | null: false |
 | password          | string   | null: false |
-| birthday          | datetime | null: false |
+| birthday          | date     | null: false |
 
 ### Association
 
@@ -42,7 +42,7 @@
 
 | Column      | Type        | Options                         |
 | ----------- | ----------- | ------------------------------- |
-| item_id     | references  | null: false,  foreign_key: true |
+| item        | references  | null: false,  foreign_key: true |
 | user        | references  | null: false,  foreign_key: true |
 
 ### Association
@@ -59,11 +59,10 @@
 | prefecture_id   | integer     | null: false                     |
 | city            | string      | null: false                     |
 | house_number    | string      | null: false                     |
-| building_number | string      | null: false                     |
+| building_number | string      |                                 |
 | phone_number    | string      | null: false                     |
 | user            | references  | null: false,  foreign_key: true |
 
 ### Association
 
-- belongs_to :address
-- belongs_to :user
+- belongs_to :oder
