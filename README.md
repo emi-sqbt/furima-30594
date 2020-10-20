@@ -2,71 +2,66 @@
 
 ## users テーブル
 
-| Column            | Type   | Options     |
-| ----------------- | ------ | ----------- |
-| family_name       | string | null: false |
-| first_name        | string | null: false |
-| family_name_kana  | string | null: false |
-| first_name_kane   | string | null: false |
-| nickname          | string | null: false |
-| email             | string | null: false |
-| password          | string | null: false |
-| bd_year           | date   | null: false |
-| bd_month          | date   | null: false |
-| bd_day            | date   | null: false |
+| Column            | Type     | Options     |
+| ----------------- | -------- | ----------- |
+| family_name       | string   | null: false |
+| first_name        | string   | null: false |
+| family_name_kana  | string   | null: false |
+| first_name_kane   | string   | null: false |
+| nickname          | string   | null: false |
+| email             | string   | null: false |
+| password          | string   | null: false |
+| birthday          | datetime | null: false |
 
 ### Association
 
 - has_many :items
-- has_one :order
+- hsa_many :orders
 
 
 ## items テーブル
 
-| Column                   | Type    | Options     |
-| ------------------------ | ------- | ----------- |
-| name                     | string  | null: false |
-| category                 | string  | null: false |
-| price                    | integer | null: false |
-| seller                   | string  | null: false |
-| description              | text    | null: false |
-| status                   | string  | null: false |
-| shipping_charges         | string  | null: false |
-| shipping_area            | string  | null: false |
-| estimated_shipping_date  | string  | null: false |
+| Column                      | Type    | Options     |
+| --------------------------- | ------- | ----------- |
+| name                        | string  | null: false |
+| price                       | integer | null: false |
+| description                 | text    | null: false |
+| category_id                 | integer | null: false |
+| status_id                   | integer | null: false |
+| shipping_charges_id         | integer | null: false |
+| shipping_area_id            | integer | null: false |
+| estimated_shipping_date_id  | integer | null: false |
 
 
 ### Association
 
 - belongs_to :user
-- belongs_to :oder
+- has_one :oder
 
 ## orders テーブル
 
-| Column      | Type        | Options                        |
-| ----------- | ----------- | ------------------------------ |
-| price       | references  |null: false,  foreign_key: true |
-| number      | integer     | null: false                    |
-| exp_month   | date        | null: false                    |
-| exp_year    | date        | null: false                    |
-| user        | references  |null: false,  foreign_key: true |
+| Column      | Type        | Options                         |
+| ----------- | ----------- | ------------------------------- |
+| item_id     | references  | null: false,  foreign_key: true |
+| user        | references  | null: false,  foreign_key: true |
 
 ### Association
 
 - has_one :address
-- has_one :item
+- belongs_to :item
 - belongs_to :user
 
 ## address テーブル
 
-| Column        | Type        | Options                        |
-| ------------- | ----------- | ------------------------------ |
-| postal_number | string      | null: false                    |
-| prefecture    | integer     | null: false                    |
-| city          | string      | null: false                    |
-| house_number  | integer     | null: false                    |
-| phone_number  | integer     | null: false                    |
-| user          | references  |null: false,  foreign_key: true |
+| Column          | Type        | Options                         |
+| --------------- | ----------- | ------------------------------- |
+| postal_number   | string      | null: false                     |
+| prefecture_id   | integer     | null: false                     |
+| city            | string      | null: false                     |
+| house_number    | string      | null: false                     |
+| building_number | string      | null: false                     |
+| phone_number    | string      | null: false                     |
+| user            | references  | null: false,  foreign_key: true |
 
 ### Association
 
