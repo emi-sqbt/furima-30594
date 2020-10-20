@@ -21,16 +21,18 @@
 
 ## items テーブル
 
-| Column                      | Type    | Options     |
-| --------------------------- | ------- | ----------- |
-| name                        | string  | null: false |
-| price                       | integer | null: false |
-| description                 | text    | null: false |
-| category_id                 | integer | null: false |
-| status_id                   | integer | null: false |
-| shipping_charges_id         | integer | null: false |
-| shipping_area_id            | integer | null: false |
-| estimated_shipping_date_id  | integer | null: false |
+| Column                      | Type      | Options                         |
+| --------------------------- | --------- | ------------------------------- |
+| name                        | string    | null: false                     |
+| price                       | integer   | null: false                     |
+| description                 | text      | null: false                     |
+| category_id                 | integer   | null: false                     |
+| status_id                   | integer   | null: false                     |
+| shipping_charges_id         | integer   | null: false                     |
+| prefecture_id               | integer   | null: false                     |
+| estimated_shipping_date_id  | integer   | null: false                     |
+| user                        |references | null: false,  foreign_key: true |
+
 
 
 ### Association
@@ -61,8 +63,8 @@
 | house_number    | string      | null: false                     |
 | building_number | string      |                                 |
 | phone_number    | string      | null: false                     |
-| user            | references  | null: false,  foreign_key: true |
+| order           | references  | null: false,  foreign_key: true |
 
 ### Association
 
-- belongs_to :oder
+- belongs_to :order
