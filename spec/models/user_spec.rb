@@ -59,7 +59,7 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-      it 'birthdayが空だと登録できない' do
+      it '生年月日は必須であること' do
         @user.birthday = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
@@ -90,6 +90,32 @@ describe User do
         @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it 'emailには＠が無いと保存できない' do
+        @user.email = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+      it 'family_nameは、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+        @user.family_name = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name is invalid. Input full-width characters.")
+      end
+      it 'first_nameは全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
+        @user.first_name = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
+      end
+      it 'family_name_kanaは、全角（カタカナ）での入力が必須であること' do
+        @user.family_name_kana = "あああ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name kana is invalid. Input full-width katakana characters.")
+      end
+        it 'first_name_kanaは、全角（カタカナ）での入力が必須であること' do
+          @user.first_name_kana = "あああ"
+          @user.valid?
+          expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters.")
       end
     end
   end
