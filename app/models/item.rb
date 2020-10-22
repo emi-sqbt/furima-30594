@@ -9,7 +9,4 @@ class Item < ApplicationRecord
   validates :shipping_charges_id, presence: true
   validates :prefecture_id, presence: true
   validates :estimated_shipping_date_id, presence: true
-
-
-
 end
