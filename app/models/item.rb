@@ -1,13 +1,28 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :status
+  belongs_to_active_hash :shipping_charge
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :estimated_shipping_date
+
   belongs_to :user
   has_one_attached :image
 
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :description, presence: true
-  validates :category_id, presence: true
-  validates :status_id, presence: true
-  validates :shipping_charges_id, presence: true
-  validates :prefecture_id, presence: true
-  validates :estimated_shipping_date_id, presence: true
+  with_options presence: true do
+  validates :name
+  validates :price, format: { with: greater_than_or_equal_to: 300, less_than_or_equal_to: 999999999, message: "is invalid. Input ¥300~¥9,999,999."}
+  validates :description
+  validates :category_id
+  validates :status_id
+  validates :shipping_charge_id
+  validates :prefecture_id
+  validates :estimated_shipping_date_id
+  end
+
+  validates :category_id, numericality: { other_than: 1 }
+  validates :status_id, numericality: { other_than: 1 }
+  validates :shipping_charge_id, numericality: { other_than: 1 }
+  validates :prefecture_id, numericality: { other_than: 1 }
+  validates :estimated_shipping_date_id, numericality: { other_than: 1 }
 end
