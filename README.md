@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- hsa_many :orders
+- has_many :orders
 
 
 ## items テーブル
