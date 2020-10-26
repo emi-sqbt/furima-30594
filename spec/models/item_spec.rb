@@ -64,12 +64,12 @@ RSpec.describe Item, type: :model do
           expect(@item.errors.full_messages).to include("Price can't be blank")
         end
         it '価格が￥10000000以上だと保存でない' do
-          @item.price = '10_000_000'
+          @item.price = 10_000_000
           @item.valid?
           expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
         end
         it '価格が￥300未満だと保存でない' do
-          @item.price = '299'
+          @item.price = 299
           @item.valid?
           expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
         end
@@ -83,6 +83,34 @@ RSpec.describe Item, type: :model do
           @item.valid?
           expect(@item.errors.full_messages).to include('User must exist')
         end
+        it 'カテゴリー情報が--だと保存でない' do
+          @item.category_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Category must be other than 1")
+        end
+        it '商品の状態についての情報が--だと保存でない' do
+          @item.status_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Status must be other than 1")
+        end
+        it '配送料の負担についての情報が--だと保存でない' do
+          @item.shipping_charge_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
+        end
+        it '配送元の地域についての情報が--だと保存でない' do
+          @item.prefecture_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+        end
+        it '発送日までの日数についての情報が--だと保存でない' do
+          @item.estimated_shipping_date_id = 1
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Estimated shipping date must be other than 1")
+        end
+
+
+
       end
     end
   end
