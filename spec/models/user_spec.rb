@@ -93,37 +93,37 @@ describe User do
       end
 
       it 'emailには＠が無いと保存できない' do
-        @user.email = "aaaaaa"
+        @user.email = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'family_nameは、全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
-        @user.family_name = "aaaaaa"
+        @user.family_name = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name is invalid. Input full-width characters.")
+        expect(@user.errors.full_messages).to include('Family name is invalid. Input full-width characters.')
       end
       it 'first_nameは全角（漢字・ひらがな・カタカナ）での入力が必須であること' do
-        @user.first_name = "aaaaaa"
+        @user.first_name = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid. Input full-width characters.")
+        expect(@user.errors.full_messages).to include('First name is invalid. Input full-width characters.')
       end
       it 'family_name_kanaは、全角（カタカナ）での入力が必須であること' do
-        @user.family_name_kana = "あああ"
+        @user.family_name_kana = 'あああ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name kana is invalid. Input full-width katakana characters.")
+        expect(@user.errors.full_messages).to include('Family name kana is invalid. Input full-width katakana characters.')
       end
-        it 'first_name_kanaは、全角（カタカナ）での入力が必須であること' do
-          @user.first_name_kana = "あああ"
-          @user.valid?
-          expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters.")
+      it 'first_name_kanaは、全角（カタカナ）での入力が必須であること' do
+        @user.first_name_kana = 'あああ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name kana is invalid. Input full-width katakana characters.')
       end
       it 'passwordが半角数字のみの場合、登録できない' do
-        @user.password = "123456"
+        @user.password = '123456'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it 'passwordが半角英字のみの場合、登録できない' do
-        @user.password = "aaaaaa"
+        @user.password = 'aaaaaa'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
