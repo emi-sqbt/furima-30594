@@ -22,6 +22,6 @@ class Item < ApplicationRecord
   end
 
   with_options numericality: { other_than: 1 } do
-  validates :category_id, :status_id, :shipping_charge_id, :prefecture_id, :estimated_shipping_date_id
+    validates :category_id, :status_id, :shipping_charge_id, :prefecture_id, :estimated_shipping_date_id
   end
 end
