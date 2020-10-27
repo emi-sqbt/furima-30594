@@ -86,31 +86,28 @@ RSpec.describe Item, type: :model do
         it 'カテゴリー情報が--だと保存でない' do
           @item.category_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Category must be other than 1")
+          expect(@item.errors.full_messages).to include('Category must be other than 1')
         end
         it '商品の状態についての情報が--だと保存でない' do
           @item.status_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Status must be other than 1")
+          expect(@item.errors.full_messages).to include('Status must be other than 1')
         end
         it '配送料の負担についての情報が--だと保存でない' do
           @item.shipping_charge_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
+          expect(@item.errors.full_messages).to include('Shipping charge must be other than 1')
         end
         it '配送元の地域についての情報が--だと保存でない' do
           @item.prefecture_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+          expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
         end
         it '発送日までの日数についての情報が--だと保存でない' do
           @item.estimated_shipping_date_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to include("Estimated shipping date must be other than 1")
+          expect(@item.errors.full_messages).to include('Estimated shipping date must be other than 1')
         end
-
-
-
       end
     end
   end
