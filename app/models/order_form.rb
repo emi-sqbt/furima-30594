@@ -1,8 +1,11 @@
 class OrderForm
   include ActiveModel::Model
   attr_accessor :postal_number, :prefecture_id, :city, :house_number, :building_number, :phone_number, :user_id, :item_id, :order_id
+  attr_accessor :token
+  
 
   with_options presence: true do
+    validates :token
     validates :user_id
     validates :item_id
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
@@ -11,6 +14,8 @@ class OrderForm
     validates :house_number
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "is invalid. Input half-width numbers."}
   end
+
+  
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id )
