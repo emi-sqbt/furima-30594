@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
-  before_action :sold_item, only: [:index, :create]
-  before_action :item_user, only: [:index, :create]
+  before_action :heck_if_it_is_a_purchased_item, only: [:index, :create]
+  before_action :whether_the_seller_and_the_buyer_are_equal, only: [:index, :create]
 
   def index
     @order_form = OrderForm.new
@@ -25,11 +25,11 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def sold_item
+  def check_if_it_is_a_purchased_item
     redirect_to root_path unless @item.order.nil?
   end
 
-  def item_user
+  def whether_the_seller_and_the_buyer_are_equal
     redirect_to root_path if current_user.id == @item.user_id
   end
 
