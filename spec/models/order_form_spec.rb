@@ -35,20 +35,20 @@ RSpec.describe OrderForm, type: :model do
       expect(@order_form.errors.full_messages).to include("Phone number can't be blank")
     end
     it '郵便番号には-がないと保存できないこと' do
-      @order_form.postal_number = 1234567
+      @order_form.postal_number = 1_234_567
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Postal number is invalid. Include hyphen(-)")
+      expect(@order_form.errors.full_messages).to include('Postal number is invalid. Include hyphen(-)')
     end
     it '電話番号には-があると保存できないこと' do
-      @order_form.phone_number = 123-4564-7890
+      @order_form.phone_number = 123 - 4564 - 7890
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input half-width numbers.")
+      expect(@order_form.errors.full_messages).to include('Phone number is invalid. Input half-width numbers.')
     end
     it '電話番号は11桁いかでないと保存できないこと' do
-      @order_form.phone_number = 111111111111
+      @order_form.phone_number = 111_111_111_111
       binding.pry
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input half-width numbers.")
+      expect(@order_form.errors.full_messages).to include('Phone number is invalid. Input half-width numbers.')
     end
     it 'user_idが空だと保存できないこと' do
       @order_form.user_id = nil
@@ -60,14 +60,10 @@ RSpec.describe OrderForm, type: :model do
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include("Item can't be blank")
     end
-    it "tokenが空では登録できないこと" do
+    it 'tokenが空では登録できないこと' do
       @order_form.token = nil
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include("Token can't be blank")
     end
-
-
-
-
   end
 end
