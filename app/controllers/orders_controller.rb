@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
-  before_action :heck_if_it_is_a_purchased_item, only: [:index, :create]
+  before_action :check_if_it_is_a_purchased_item, only: [:index, :create]
   before_action :whether_the_seller_and_the_buyer_are_equal, only: [:index, :create]
 
   def index
