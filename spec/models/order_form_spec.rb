@@ -9,6 +9,10 @@ RSpec.describe OrderForm, type: :model do
     it 'すべての値が正しく入力されていれば保存できること' do
       expect(@order_form).to be_valid
     end
+    it 'building_numberがなくても保存できる' do
+      @order_form.building_number = ""
+      expect(@order_form).to be_valid
+    end
     it '郵便番号が空だと保存できないこと' do
       @order_form.postal_number = nil
       @order_form.valid?
@@ -46,7 +50,6 @@ RSpec.describe OrderForm, type: :model do
     end
     it '電話番号は11桁いかでないと保存できないこと' do
       @order_form.phone_number = 111_111_111_111
-      binding.pry
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include('Phone number is invalid. Input half-width numbers.')
     end
@@ -65,5 +68,11 @@ RSpec.describe OrderForm, type: :model do
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include("Token can't be blank")
     end
+    it '電話番号が数字のみでないと保存できないこと' do
+      @order_form.phone_number = 'あああ１１１'
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include("Phone number is invalid. Input half-width numbers.")
+    end
+
   end
 end

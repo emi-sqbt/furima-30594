@@ -8,5 +8,6 @@ FactoryBot.define do
     user_id { 3 }
     item_id { 3 }
     token { 'tok_abcdefghijk00000000000000000' }
+    building_number { '1-123' }
   end
 end
