@@ -1,3 +1,4 @@
+if (document.URL.match( /index/ )) {
 const pay = () => {
   
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
@@ -35,3 +36,4 @@ const pay = () => {
 };
 
 window.addEventListener("load", pay);
+}
